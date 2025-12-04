@@ -2,13 +2,14 @@
 !theme cerulean
 
 class Main {
-    
+    --
+    +main(String[] args)
 }
 
-class MainGUI {
-
+class GUI {
 }
+note left : La classe implementa la libreria JFrame 
 
-class 
+JFrame <.. GUI
 
 @enduml
