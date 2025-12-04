@@ -1,0 +1,14 @@
+@startuml Main.puml
+!theme cerulean
+
+class Main {
+    
+}
+
+class MainGUI {
+
+}
+
+class 
+
+@enduml
