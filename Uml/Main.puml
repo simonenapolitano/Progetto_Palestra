@@ -1,15 +1,56 @@
 @startuml Main.puml
-!theme cerulean
+!theme spacelab
 
 class Main {
-    --
     +main(String[] args)
+    --
+    new GUI()
 }
 
-class GUI {
+class Utente implements GUI {
+    -String nome
+    -String cognome
+    -String username
+    -String password
+    --
+    +Utente()
+    --
+    +void visualizzaDati()
+    +String getUsername()
+    +void setUsername(String username)
+    +String getPassword()
+    +void setPassword(String password)
+    +void creaSchedaAllenamento()
 }
-note left : La classe implementa la libreria JFrame 
 
-JFrame <.. GUI
+class Cliente extends Utente {
+    +static void visualizzaSchedaAllenamento()
+    +static void aggiornaSchedaAllenamento()
+    +static void contattaPersonalTrainer()
+    +static void contattaNutrizionista()
+}
+
+class Admin extends Utente {
+    +void banUtente()
+    +void modificaDatiUtente()
+    +void visualizzaUtente() 
+}
+
+class PersonalTrainer extends Utente {
+    +void contattaUtente()
+}
+
+class Nutrizionista extends Utente {
+    +void contattaUtente()
+}
+
+class GUI extends JFrame implements Main {
+    -JTextField usernameField
+    -JPasswordField passwordField
+    -JButton loginButton
+    --
+    +GUI()
+    +void actionPerformed(ActionEvent e)
+}
 
 @enduml
