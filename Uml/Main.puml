@@ -7,7 +7,7 @@ class Main {
     new GUI()
 }
 
-class Utente implements GUI {
+class Utente {
     -String nome
     -String cognome
     -String username
@@ -44,7 +44,7 @@ class Nutrizionista extends Utente {
     +void contattaUtente()
 }
 
-class GUI extends JFrame implements Main {
+class GUI extends JFrame {
     -JTextField usernameField
     -JPasswordField passwordField
     -JButton loginButton
@@ -52,5 +52,23 @@ class GUI extends JFrame implements Main {
     +GUI()
     +void actionPerformed(ActionEvent e)
 }
+
+class Allenamento {
+    -ImageIcon immagineAllenamento
+    -String nomeAllenamento
+    --
+    +Allenamento()
+}
+
+class SchedaAllenamento {
+    -Allenamento[] allenamenti
+    --
+    +SchedaAllenamento()
+}
+
+Main <.. GUI
+GUI <.. Utente
+GUI <.. SchedaAllenamento 
+GUI <.. Allenamento
 
 @enduml
