@@ -37,10 +37,14 @@ class Admin extends Utente {
 }
 
 class PersonalTrainer extends Utente {
+    +PersonalTrainer()
+    --
     +void contattaUtente()
 }
 
 class Nutrizionista extends Utente {
+    +Nutrizionista()
+    --
     +void contattaUtente()
 }
 
@@ -54,14 +58,13 @@ class GUI extends JFrame {
 }
 
 class Allenamento {
-    -ImageIcon immagineAllenamento
     -String nomeAllenamento
     --
     +Allenamento()
 }
 
 class SchedaAllenamento {
-    -Allenamento[] allenamenti
+    -ArrayList<Allenamento>
     --
     +SchedaAllenamento()
 }
