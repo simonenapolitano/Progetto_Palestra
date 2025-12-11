@@ -67,6 +67,8 @@ class SchedaAllenamento {
     -ArrayList<Allenamento>
     --
     +SchedaAllenamento()
+    --
+    +void aggiungiAllenamento(Allenamento allenamento)
 }
 
 Main <.. GUI
