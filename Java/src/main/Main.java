@@ -5,6 +5,6 @@ import scheda_allenamento.*; //Collego il package scheda_allenamento alla classe
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(GUI.class.getResource("/icons/32.png"));
+        new GUI();
     }
 }
