@@ -76,7 +76,7 @@ public class GUI extends JFrame {
                 username.setForeground(Color.decode("#656565"));
                 username.setBorder(new RoundedBorder(2, Color.decode("#979797"), 0));
                 OnFocusEventHelper.setOnFocusText(
-                                username, "Username",
+                                username, "e-mail...",
                                 Color.decode("#353535"),
                                 Color.decode("#656565"));
                 gbc.gridy = 1;
@@ -88,7 +88,7 @@ public class GUI extends JFrame {
                 password.setForeground(Color.decode("#656565"));
                 password.setBorder(new RoundedBorder(2, Color.decode("#979797"), 0));
                 OnFocusEventHelper.setOnFocusText(
-                                password, "Password",
+                                password, "Password...",
                                 Color.decode("#353535"),
                                 Color.decode("#656565"));
                 gbc.gridy = 2;
@@ -172,7 +172,7 @@ public class GUI extends JFrame {
                 username.setForeground(Color.decode("#656565"));
                 username.setBorder(new RoundedBorder(2, Color.decode("#979797"), 0));
                 OnFocusEventHelper.setOnFocusText(
-                                username, "Username",
+                                username, "e-mail...",
                                 Color.decode("#353535"),
                                 Color.decode("#656565"));
                 gbc.gridy = 1;
@@ -184,7 +184,7 @@ public class GUI extends JFrame {
                 password.setForeground(Color.decode("#656565"));
                 password.setBorder(new RoundedBorder(2, Color.decode("#979797"), 0));
                 OnFocusEventHelper.setOnFocusText(
-                                password, "Password",
+                                password, "Password...",
                                 Color.decode("#353535"),
                                 Color.decode("#656565"));
                 gbc.gridy = 2;
