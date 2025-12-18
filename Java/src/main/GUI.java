@@ -5,6 +5,8 @@ import javax.swing.*;
 import database.DatabaseConnection;
 
 import java.awt.*;
+import java.sql.PreparedStatement;
+
 import helper_classes.*;
 
 public class GUI extends JFrame {
@@ -70,17 +72,17 @@ public class GUI extends JFrame {
                 gbc.gridy = 0;
                 panel.add(title, gbc);
 
-                JTextField username = new JTextField();
-                username.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 17));
-                username.setBackground(Color.decode("#B2B2B2"));
-                username.setForeground(Color.decode("#656565"));
-                username.setBorder(new RoundedBorder(2, Color.decode("#979797"), 0));
+                JTextField email = new JTextField();
+                email.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 17));
+                email.setBackground(Color.decode("#B2B2B2"));
+                email.setForeground(Color.decode("#656565"));
+                email.setBorder(new RoundedBorder(2, Color.decode("#979797"), 0));
                 OnFocusEventHelper.setOnFocusText(
-                                username, "e-mail...",
+                                email, "e-mail...",
                                 Color.decode("#353535"),
                                 Color.decode("#656565"));
                 gbc.gridy = 1;
-                panel.add(username, gbc);
+                panel.add(email, gbc);
 
                 JPasswordField password = new JPasswordField();
                 password.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 17));
@@ -101,7 +103,7 @@ public class GUI extends JFrame {
                 login.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
                 login.setFocusPainted(false);
                 login.addActionListener(e -> {
-                        if (DatabaseConnection.passwordCheck(username.getText(), new String(password.getPassword()))) {
+                        if (DatabaseConnection.login(email.getText(), new String(password.getPassword()))) {
                                 System.out.println("Login successo");
                         }
                 });
@@ -126,11 +128,6 @@ public class GUI extends JFrame {
                 registerButton.setForeground(Color.decode("#D9D9D9"));
                 registerButton.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
                 registerButton.setFocusPainted(false);
-                registerButton.addActionListener(e -> {
-                        if (DatabaseConnection.passwordCheck(username.getText(), new String(password.getPassword()))) {
-                                System.out.println("Login successo");
-                        }
-                });
                 gbc.gridy = 3;
                 gbc.fill = GridBagConstraints.NONE;
                 gbc.anchor = GridBagConstraints.CENTER;
@@ -166,17 +163,17 @@ public class GUI extends JFrame {
                 gbc.gridy = 0;
                 panel.add(title, gbc);
 
-                JTextField username = new JTextField();
-                username.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 17));
-                username.setBackground(Color.decode("#B2B2B2"));
-                username.setForeground(Color.decode("#656565"));
-                username.setBorder(new RoundedBorder(2, Color.decode("#979797"), 0));
+                JTextField email = new JTextField();
+                email.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 17));
+                email.setBackground(Color.decode("#B2B2B2"));
+                email.setForeground(Color.decode("#656565"));
+                email.setBorder(new RoundedBorder(2, Color.decode("#979797"), 0));
                 OnFocusEventHelper.setOnFocusText(
-                                username, "e-mail...",
+                                email, "e-mail...",
                                 Color.decode("#353535"),
                                 Color.decode("#656565"));
                 gbc.gridy = 1;
-                panel.add(username, gbc);
+                panel.add(email, gbc);
 
                 JPasswordField password = new JPasswordField();
                 password.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 17));
@@ -196,6 +193,13 @@ public class GUI extends JFrame {
                 registrati.setForeground(Color.decode("#D9D9D9"));
                 registrati.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
                 registrati.setFocusPainted(false);
+                registrati.addActionListener(e -> {
+                        if (DatabaseConnection.register(email.getText(), new String(password.getPassword()))) {
+                                System.out.println("Registration successful");
+                        } else {
+                                System.out.println("Registration failed");
+                        }
+                });
                 gbc.gridy = 3;
                 gbc.fill = GridBagConstraints.NONE;
                 gbc.anchor = GridBagConstraints.CENTER;
