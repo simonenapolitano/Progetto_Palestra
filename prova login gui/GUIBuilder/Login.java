@@ -9,7 +9,7 @@ public class Login extends JFrame {
 
     public Login() {
         // ================= FRAME =================
-        setTitle("LOGIN");
+        setTitle("Palestra");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(660, 357);
         setMinimumSize(new Dimension(500, 300));
