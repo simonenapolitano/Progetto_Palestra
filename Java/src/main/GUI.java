@@ -16,17 +16,19 @@ public class GUI extends JFrame {
 
         public GUI() {
                 // ================= FRAME =================
-                setTitle("LOGIN");
+                setTitle("PALESTRA");
                 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 setSize(660, 357);
                 setMinimumSize(new Dimension(500, 300));
                 setLocationRelativeTo(null);
 
                 // ================= ICONA =================
-                ImageIcon icon;
-                java.net.URL iconUrl = getClass().getResource(APP_ICON_CLASSPATH);
-                icon = (iconUrl != null) ? new ImageIcon(iconUrl) : new ImageIcon(APP_ICON_FILEPATH);
-                setIconImage(icon.getImage());
+                java.net.URL iconUrl = GUI.class.getResource("/icons/32.png");
+                if (iconUrl != null) {
+                        setIconImage(new ImageIcon(iconUrl).getImage());
+                } else {
+                        System.err.println("Icona non trovata!");
+                }
 
                 // ================= ROOT (CARDLAYOUT) =================
                 cardLayout = new CardLayout();
