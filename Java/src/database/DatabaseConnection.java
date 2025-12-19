@@ -20,41 +20,37 @@ public class DatabaseConnection {
         }
     }
     public static boolean register(String email, String password) {
+        String checkSql = "SELECT id FROM users WHERE username = ?";
+        String insertSql = "INSERT INTO users (username, password_hash, role) VALUES (?, SHA2(?, 256), ?)";
 
-    // 1️⃣ Query per controllare se l'utente esiste già
-    String checkSql = "SELECT id FROM users WHERE username = ?";
+        try (Connection conn = DriverManager.getConnection(URL, USER, DB_PASSWORD)) {
 
-    // 2️⃣ Query per inserire il nuovo utente
-    String insertSql = "INSERT INTO users (username, password_hash, role) VALUES (?, SHA2(?, 256), ?)";
+            // 🔍 Controllo esistenza utente
+            try (PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
+                checkStmt.setString(1, email);
+                ResultSet rs = checkStmt.executeQuery();
 
-    try (Connection conn = DriverManager.getConnection(URL, USER, DB_PASSWORD)) {
-
-        // 🔍 Controllo esistenza utente
-        try (PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
-            checkStmt.setString(1, email);
-            ResultSet rs = checkStmt.executeQuery();
-
-            if (rs.next()) {
-                System.out.println("User already exists");
-                return false;
+                if (rs.next()) {
+                    System.out.println("User already exists");
+                    return false;
+                }
             }
+
+            // 📝 Inserimento nuovo utente
+            try (PreparedStatement insertStmt = conn.prepareStatement(insertSql)) {
+                insertStmt.setString(1, email);
+                insertStmt.setString(2, password);
+                insertStmt.setString(3, "USER");
+
+                insertStmt.executeUpdate();
+                System.out.println("User registered successfully");
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
-
-        // 📝 Inserimento nuovo utente
-        try (PreparedStatement insertStmt = conn.prepareStatement(insertSql)) {
-            insertStmt.setString(1, email);
-            insertStmt.setString(2, password);
-            insertStmt.setString(3, "USER");
-
-            insertStmt.executeUpdate();
-            System.out.println("User registered successfully");
-            return true;
-        }
-
-    } catch (SQLException e) {
-        e.printStackTrace();
-        return false;
     }
-}
 
 }

@@ -96,15 +96,25 @@ public class GUI extends JFrame {
                 gbc.gridy = 2;
                 panel.add(password, gbc);
 
+                JLabel successLabel = new JLabel();
+                successLabel.setForeground(Color.decode("#D9D9D9"));
+
                 JButton login = new JButton("LOGIN");
                 login.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
                 login.setBackground(Color.decode("#2e2e2e"));
                 login.setForeground(Color.decode("#D9D9D9"));
                 login.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
                 login.setFocusPainted(false);
+                OnClickEventHelper.setOnClickColor(
+                        login,
+                        Color.decode("#232323"),
+                        Color.decode("#2e2e2e")
+                );
                 login.addActionListener(e -> {
                         if (DatabaseConnection.login(email.getText(), new String(password.getPassword()))) {
-                                System.out.println("Login successo");
+                                successLabel.setText("Login effettuato con successo");
+                        } else {
+                                successLabel.setText("Errore nel login");
                         }
                 });
                 gbc.gridy = 3;
@@ -127,12 +137,18 @@ public class GUI extends JFrame {
                 registerButton.setBackground(Color.decode("#2e2e2e"));
                 registerButton.setForeground(Color.decode("#D9D9D9"));
                 registerButton.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
+                OnClickEventHelper.setOnClickColor(
+                        registerButton,
+                        Color.decode("#232323"),
+                        Color.decode("#2e2e2e")
+                );
                 registerButton.setFocusPainted(false);
                 gbc.gridy = 3;
                 gbc.fill = GridBagConstraints.NONE;
                 gbc.anchor = GridBagConstraints.CENTER;
                 registerButton.addActionListener(e -> cardLayout.show(root, "register"));
 
+                footer.add(successLabel);
                 footer.add(registerLabel);
                 footer.add(registerButton);
 
@@ -193,6 +209,11 @@ public class GUI extends JFrame {
                 registrati.setForeground(Color.decode("#D9D9D9"));
                 registrati.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
                 registrati.setFocusPainted(false);
+                OnClickEventHelper.setOnClickColor(
+                        registrati,
+                        Color.decode("#232323"),
+                        Color.decode("#2e2e2e")
+                );
                 registrati.addActionListener(e -> {
                         if (DatabaseConnection.register(email.getText(), new String(password.getPassword()))) {
                                 System.out.println("Registration successful");
@@ -221,6 +242,11 @@ public class GUI extends JFrame {
                 loginButton.setForeground(Color.decode("#D9D9D9"));
                 loginButton.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
                 loginButton.setFocusPainted(false);
+                OnClickEventHelper.setOnClickColor(
+                        loginButton,
+                        Color.decode("#232323"),
+                        Color.decode("#2e2e2e")
+                );
                 gbc.gridy = 3;
                 gbc.fill = GridBagConstraints.NONE;
                 gbc.anchor = GridBagConstraints.CENTER;
